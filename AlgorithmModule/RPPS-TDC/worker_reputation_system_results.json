@@ -1,0 +1,801 @@
+{
+  "system_summary": {
+    "total_execution_time": 0.19417290000000142,
+    "total_iterations": 1850,
+    "total_tasks_processed": 100
+  },
+  "batch_statistics": [
+    {
+      "batch_range": "1-10",
+      "execution_time": 0.01928550000000029,
+      "iterations": 186,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.4265197609957267,
+      "crh_mae_std": 1.4933578411013475,
+      "crh_mse_mean": 18.21434183273685,
+      "crh_mse_std": 21.5078502866985,
+      "crh_rmse_mean": 3.5807122435787226,
+      "crh_rmse_std": 2.322249267719183,
+      "good_mae_mean": 1.0399238011167564,
+      "good_mae_std": 1.635555034740021,
+      "good_mse_mean": 5.484929444219677,
+      "good_mse_std": 14.966563977568615,
+      "good_rmse_mean": 1.2894954570944466,
+      "good_rmse_std": 1.955027086859019
+    },
+    {
+      "batch_range": "11-20",
+      "execution_time": 0.01701320000000006,
+      "iterations": 178,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.161494618757963,
+      "crh_mae_std": 1.1515509263066435,
+      "crh_mse_mean": 10.995224211220028,
+      "crh_mse_std": 12.582838444949985,
+      "crh_rmse_mean": 2.886771081689912,
+      "crh_rmse_std": 1.63149530588932,
+      "good_mae_mean": 0.5855293392723584,
+      "good_mae_std": 0.23269196604900566,
+      "good_mse_mean": 0.7143516067267426,
+      "good_mse_std": 0.5776959031337187,
+      "good_rmse_mean": 0.7738830256105651,
+      "good_rmse_std": 0.33978915432747375
+    },
+    {
+      "batch_range": "21-30",
+      "execution_time": 0.017411400000000077,
+      "iterations": 184,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.149956613107174,
+      "crh_mae_std": 0.725174963700111,
+      "crh_mse_mean": 10.915825317863469,
+      "crh_mse_std": 6.70081453083984,
+      "crh_rmse_mean": 3.1263534630705836,
+      "crh_rmse_std": 1.0685220361836432,
+      "good_mae_mean": 0.4783293569562737,
+      "good_mae_std": 0.22884285554359204,
+      "good_mse_mean": 0.44940871791057946,
+      "good_mse_std": 0.3566544467510727,
+      "good_rmse_mean": 0.6113036574220377,
+      "good_rmse_std": 0.275166415706967
+    },
+    {
+      "batch_range": "31-40",
+      "execution_time": 0.020345500000000127,
+      "iterations": 179,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.5250388174316347,
+      "crh_mae_std": 1.5655940700680833,
+      "crh_mse_mean": 18.4874685674629,
+      "crh_mse_std": 27.34682199799196,
+      "crh_rmse_mean": 3.5002756427538992,
+      "crh_rmse_std": 2.497106123537138,
+      "good_mae_mean": 0.577390429806173,
+      "good_mae_std": 0.20824531457624734,
+      "good_mse_mean": 0.5707772218287428,
+      "good_mse_std": 0.3618362039160949,
+      "good_rmse_mean": 0.7071851701594396,
+      "good_rmse_std": 0.265831444594704
+    },
+    {
+      "batch_range": "41-50",
+      "execution_time": 0.023341500000000126,
+      "iterations": 198,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.853343604059506,
+      "crh_mae_std": 1.0985694303631277,
+      "crh_mse_mean": 20.508113964343814,
+      "crh_mse_std": 16.616885597202256,
+      "crh_rmse_mean": 4.1443701214372926,
+      "crh_rmse_std": 1.825461656919052,
+      "good_mae_mean": 0.5259356682697264,
+      "good_mae_std": 0.2657969809376644,
+      "good_mse_mean": 0.5735764895260016,
+      "good_mse_std": 0.5364665033551975,
+      "good_rmse_mean": 0.6756140422854534,
+      "good_rmse_std": 0.342231143224446
+    },
+    {
+      "batch_range": "51-60",
+      "execution_time": 0.018438600000000305,
+      "iterations": 185,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.132032870806152,
+      "crh_mae_std": 0.9386022617785226,
+      "crh_mse_mean": 12.497580163756433,
+      "crh_mse_std": 11.060290680584073,
+      "crh_rmse_mean": 3.2102082477607006,
+      "crh_rmse_std": 1.4805887915844835,
+      "good_mae_mean": 0.426116367937423,
+      "good_mae_std": 0.17566760273698506,
+      "good_mse_mean": 0.4929275806750767,
+      "good_mse_std": 0.4806160429271977,
+      "good_rmse_mean": 0.628692520303993,
+      "good_rmse_std": 0.31252727175222667
+    },
+    {
+      "batch_range": "61-70",
+      "execution_time": 0.021472500000000228,
+      "iterations": 193,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.2725848705757334,
+      "crh_mae_std": 0.9608239932655844,
+      "crh_mse_mean": 15.201765626281148,
+      "crh_mse_std": 12.608517461225675,
+      "crh_rmse_mean": 3.546741638370718,
+      "crh_rmse_std": 1.6193793184206529,
+      "good_mae_mean": 0.5097483211711971,
+      "good_mae_std": 0.20272083654680131,
+      "good_mse_mean": 0.5045279838838153,
+      "good_mse_std": 0.38335835842314797,
+      "good_rmse_mean": 0.6561359253022356,
+      "good_rmse_std": 0.2720544640537886
+    },
+    {
+      "batch_range": "71-80",
+      "execution_time": 0.019220000000000237,
+      "iterations": 178,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 1.6374277300091342,
+      "crh_mae_std": 0.6858389976341018,
+      "crh_mse_mean": 7.118789530833453,
+      "crh_mse_std": 5.883722470443635,
+      "crh_rmse_mean": 2.43753099780477,
+      "crh_rmse_std": 1.0850033021029621,
+      "good_mae_mean": 0.4526943741989048,
+      "good_mae_std": 0.1587406706848533,
+      "good_mse_mean": 0.3900711984216654,
+      "good_mse_std": 0.2491888439200025,
+      "good_rmse_mean": 0.5958271944679772,
+      "good_rmse_std": 0.18724623562059867
+    },
+    {
+      "batch_range": "81-90",
+      "execution_time": 0.019492999999999983,
+      "iterations": 179,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.020249594740909,
+      "crh_mae_std": 1.3020429431791531,
+      "crh_mse_mean": 11.136414574118511,
+      "crh_mse_std": 13.621958626511491,
+      "crh_rmse_mean": 2.8741325376955777,
+      "crh_rmse_std": 1.6958115254585602,
+      "good_mae_mean": 0.3681223614764025,
+      "good_mae_std": 0.14561579172286263,
+      "good_mse_mean": 0.2936465817169983,
+      "good_mse_std": 0.3333915030076662,
+      "good_rmse_mean": 0.4928820857532741,
+      "good_rmse_std": 0.2251973162817455
+    },
+    {
+      "batch_range": "91-100",
+      "execution_time": 0.018151699999999993,
+      "iterations": 190,
+      "crh_errors_count": 10,
+      "good_errors_count": 10,
+      "crh_mae_mean": 2.2930473229606307,
+      "crh_mae_std": 1.090742443585959,
+      "crh_mse_mean": 16.94351237730069,
+      "crh_mse_std": 15.776680926192864,
+      "crh_rmse_mean": 3.6425549972981854,
+      "crh_rmse_std": 1.9171086221074451,
+      "good_mae_mean": 0.4018428660776513,
+      "good_mae_std": 0.09311011507540819,
+      "good_mse_mean": 0.32851417583190273,
+      "good_mse_std": 0.2010943337984782,
+      "good_rmse_mean": 0.5490965272536578,
+      "good_rmse_std": 0.16433861259568883
+    }
+  ],
+  "worker_final_states": {
+    "1": {
+      "final_reputation": 0.9999649567850324,
+      "non_updated_reputation": 0.9999603539728186,
+      "total_cheating_count": 0,
+      "tasks_participated": 44
+    },
+    "2": {
+      "final_reputation": 0.9996285978971272,
+      "non_updated_reputation": 0.9995798128341196,
+      "total_cheating_count": 0,
+      "tasks_participated": 35
+    },
+    "3": {
+      "final_reputation": 0.9997291453371187,
+      "non_updated_reputation": 0.999693567604564,
+      "total_cheating_count": 0,
+      "tasks_participated": 43
+    },
+    "4": {
+      "final_reputation": 0.9999256722202047,
+      "non_updated_reputation": 0.9999159092047738,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "5": {
+      "final_reputation": 0.8513637928451725,
+      "non_updated_reputation": 0.822045413301397,
+      "total_cheating_count": 1,
+      "tasks_participated": 40
+    },
+    "6": {
+      "final_reputation": 0.9992477132135568,
+      "non_updated_reputation": 0.9991488963945379,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "7": {
+      "final_reputation": 0.99982064801835,
+      "non_updated_reputation": 0.9997970896043962,
+      "total_cheating_count": 0,
+      "tasks_participated": 37
+    },
+    "8": {
+      "final_reputation": 0.9993397957257995,
+      "non_updated_reputation": 0.999253074367505,
+      "total_cheating_count": 0,
+      "tasks_participated": 39
+    },
+    "9": {
+      "final_reputation": 0.9998320649340378,
+      "non_updated_reputation": 0.9998100061830865,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "10": {
+      "final_reputation": 0.999894673404627,
+      "non_updated_reputation": 0.9998808385561806,
+      "total_cheating_count": 0,
+      "tasks_participated": 38
+    },
+    "11": {
+      "final_reputation": 0.999779648363911,
+      "non_updated_reputation": 0.9997507044620726,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "12": {
+      "final_reputation": 0.9998092184954568,
+      "non_updated_reputation": 0.9997841587625651,
+      "total_cheating_count": 0,
+      "tasks_participated": 38
+    },
+    "13": {
+      "final_reputation": 0.9999585677871037,
+      "non_updated_reputation": 0.9999531257514482,
+      "total_cheating_count": 0,
+      "tasks_participated": 42
+    },
+    "14": {
+      "final_reputation": 0.999779648363911,
+      "non_updated_reputation": 0.9997507044620726,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "15": {
+      "final_reputation": 0.9953400562654544,
+      "non_updated_reputation": 0.9947273649305005,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "16": {
+      "final_reputation": 0.9999794197685702,
+      "non_updated_reputation": 0.9999767167339044,
+      "total_cheating_count": 0,
+      "tasks_participated": 45
+    },
+    "17": {
+      "final_reputation": 0.9998579621025092,
+      "non_updated_reputation": 0.9998393050604296,
+      "total_cheating_count": 0,
+      "tasks_participated": 38
+    },
+    "18": {
+      "final_reputation": 0.8095040206646335,
+      "non_updated_reputation": 0.9042755626581276,
+      "total_cheating_count": 1,
+      "tasks_participated": 43
+    },
+    "19": {
+      "final_reputation": 0.9952622320556789,
+      "non_updated_reputation": 0.9946412057640033,
+      "total_cheating_count": 0,
+      "tasks_participated": 39
+    },
+    "20": {
+      "final_reputation": 0.9999585677871037,
+      "non_updated_reputation": 0.9999531257514482,
+      "total_cheating_count": 0,
+      "tasks_participated": 42
+    },
+    "21": {
+      "final_reputation": 0.9986889446012489,
+      "non_updated_reputation": 0.9985167309617258,
+      "total_cheating_count": 0,
+      "tasks_participated": 30
+    },
+    "22": {
+      "final_reputation": 0.9997971900946766,
+      "non_updated_reputation": 0.9997705503777881,
+      "total_cheating_count": 0,
+      "tasks_participated": 38
+    },
+    "23": {
+      "final_reputation": 0.9999294493769374,
+      "non_updated_reputation": 0.9999201825079227,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "24": {
+      "final_reputation": 0.9998728005380584,
+      "non_updated_reputation": 0.9998560925908253,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "25": {
+      "final_reputation": 0.9998320649340378,
+      "non_updated_reputation": 0.9998100061830865,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "26": {
+      "final_reputation": 0.9999476837157928,
+      "non_updated_reputation": 0.9999408120087102,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "27": {
+      "final_reputation": 0.9995946631198322,
+      "non_updated_reputation": 0.9995414206538494,
+      "total_cheating_count": 0,
+      "tasks_participated": 39
+    },
+    "28": {
+      "final_reputation": 0.9999256722202047,
+      "non_updated_reputation": 0.9999159092047738,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "29": {
+      "final_reputation": 0.9905775448252672,
+      "non_updated_reputation": 0.9893248122803537,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "30": {
+      "final_reputation": 0.9999476837157928,
+      "non_updated_reputation": 0.9999408120087102,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "31": {
+      "final_reputation": 0.9998035187626977,
+      "non_updated_reputation": 0.9997777103431871,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "32": {
+      "final_reputation": 0.9990820374581366,
+      "non_updated_reputation": 0.9989614592657978,
+      "total_cheating_count": 0,
+      "tasks_participated": 30
+    },
+    "33": {
+      "final_reputation": 0.9999476837157928,
+      "non_updated_reputation": 0.9999408120087102,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "34": {
+      "final_reputation": 0.9999816613062994,
+      "non_updated_reputation": 0.9999792527076357,
+      "total_cheating_count": 0,
+      "tasks_participated": 47
+    },
+    "35": {
+      "final_reputation": 0.9880574769122296,
+      "non_updated_reputation": 0.9865228333563649,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "36": {
+      "final_reputation": 0.9997879474321352,
+      "non_updated_reputation": 0.999760093650017,
+      "total_cheating_count": 0,
+      "tasks_participated": 35
+    },
+    "37": {
+      "final_reputation": 0.9692831407330126,
+      "non_updated_reputation": 0.9661409080490284,
+      "total_cheating_count": 0,
+      "tasks_participated": 36
+    },
+    "38": {
+      "final_reputation": 0.9855398281396255,
+      "non_updated_reputation": 0.9836749724226764,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "39": {
+      "final_reputation": 0.9999109156389079,
+      "non_updated_reputation": 0.9998992142805517,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "40": {
+      "final_reputation": 0.9994609190340636,
+      "non_updated_reputation": 0.999390108608859,
+      "total_cheating_count": 0,
+      "tasks_participated": 31
+    },
+    "41": {
+      "final_reputation": 0.9999061461893428,
+      "non_updated_reputation": 0.9998938183424465,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "42": {
+      "final_reputation": 0.9989887801198027,
+      "non_updated_reputation": 0.9988559540943891,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "43": {
+      "final_reputation": 0.9999339403016276,
+      "non_updated_reputation": 0.999925263335652,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "44": {
+      "final_reputation": 0.9999476837157928,
+      "non_updated_reputation": 0.9999408120087102,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "45": {
+      "final_reputation": 0.9978040287567862,
+      "non_updated_reputation": 0.997515628737879,
+      "total_cheating_count": 0,
+      "tasks_participated": 33
+    },
+    "46": {
+      "final_reputation": 0.9494746302071384,
+      "non_updated_reputation": 0.9474058535253528,
+      "total_cheating_count": 0,
+      "tasks_participated": 41
+    },
+    "47": {
+      "final_reputation": 0.9997341312597915,
+      "non_updated_reputation": 0.9996992084859677,
+      "total_cheating_count": 0,
+      "tasks_participated": 38
+    },
+    "48": {
+      "final_reputation": 0.9981004053090123,
+      "non_updated_reputation": 0.9978509350159146,
+      "total_cheating_count": 0,
+      "tasks_participated": 40
+    },
+    "49": {
+      "final_reputation": 0.9999740136992386,
+      "non_updated_reputation": 0.9999706005531968,
+      "total_cheating_count": 0,
+      "tasks_participated": 44
+    },
+    "50": {
+      "final_reputation": 0.9999569463259653,
+      "non_updated_reputation": 0.9999512913041402,
+      "total_cheating_count": 0,
+      "tasks_participated": 43
+    },
+    "51": {
+      "final_reputation": 0.5573566372164974,
+      "non_updated_reputation": 0.4372803935715964,
+      "total_cheating_count": 12,
+      "tasks_participated": 41
+    },
+    "52": {
+      "final_reputation": 0.7513495141564479,
+      "non_updated_reputation": 0.7552447601020976,
+      "total_cheating_count": 6,
+      "tasks_participated": 38
+    },
+    "53": {
+      "final_reputation": 0.7088748542961334,
+      "non_updated_reputation": 0.6522291203710455,
+      "total_cheating_count": 9,
+      "tasks_participated": 33
+    },
+    "54": {
+      "final_reputation": 0.8882265393965991,
+      "non_updated_reputation": 0.8731707764406496,
+      "total_cheating_count": 9,
+      "tasks_participated": 36
+    },
+    "55": {
+      "final_reputation": 0.8454463241963313,
+      "non_updated_reputation": 0.8232183166462057,
+      "total_cheating_count": 8,
+      "tasks_participated": 37
+    },
+    "56": {
+      "final_reputation": 0.8030078890937934,
+      "non_updated_reputation": 0.8141628087295542,
+      "total_cheating_count": 9,
+      "tasks_participated": 45
+    },
+    "57": {
+      "final_reputation": 0.4392601212025125,
+      "non_updated_reputation": 0.4754187617300286,
+      "total_cheating_count": 7,
+      "tasks_participated": 34
+    },
+    "58": {
+      "final_reputation": 0.3462104817184378,
+      "non_updated_reputation": 0.4945021145671997,
+      "total_cheating_count": 11,
+      "tasks_participated": 47
+    },
+    "59": {
+      "final_reputation": 0.5350222322933358,
+      "non_updated_reputation": 0.6956487351992467,
+      "total_cheating_count": 4,
+      "tasks_participated": 41
+    },
+    "60": {
+      "final_reputation": 0.636509732708795,
+      "non_updated_reputation": 0.6309462790258114,
+      "total_cheating_count": 7,
+      "tasks_participated": 41
+    },
+    "61": {
+      "final_reputation": 0.5172461483184997,
+      "non_updated_reputation": 0.36190284836940534,
+      "total_cheating_count": 29,
+      "tasks_participated": 39
+    },
+    "62": {
+      "final_reputation": 0.22882364202118358,
+      "non_updated_reputation": 0.26851587336163163,
+      "total_cheating_count": 25,
+      "tasks_participated": 40
+    },
+    "63": {
+      "final_reputation": 0.3001030055814206,
+      "non_updated_reputation": 0.38889746874653697,
+      "total_cheating_count": 29,
+      "tasks_participated": 42
+    },
+    "64": {
+      "final_reputation": 0.4124694382200844,
+      "non_updated_reputation": 0.5291679705759871,
+      "total_cheating_count": 27,
+      "tasks_participated": 46
+    },
+    "65": {
+      "final_reputation": 0.5418428526494594,
+      "non_updated_reputation": 0.4336934158869323,
+      "total_cheating_count": 26,
+      "tasks_participated": 43
+    },
+    "66": {
+      "final_reputation": 0.2128786836271252,
+      "non_updated_reputation": 0.3249997693193566,
+      "total_cheating_count": 26,
+      "tasks_participated": 39
+    },
+    "67": {
+      "final_reputation": 0.5719135163089597,
+      "non_updated_reputation": 0.46976743432682877,
+      "total_cheating_count": 27,
+      "tasks_participated": 46
+    },
+    "68": {
+      "final_reputation": 0.44270528638873075,
+      "non_updated_reputation": 0.5630535534376684,
+      "total_cheating_count": 26,
+      "tasks_participated": 38
+    },
+    "69": {
+      "final_reputation": 0.550814127393513,
+      "non_updated_reputation": 0.4458867179606809,
+      "total_cheating_count": 28,
+      "tasks_participated": 40
+    },
+    "70": {
+      "final_reputation": 0.5645832587152171,
+      "non_updated_reputation": 0.41231354335310294,
+      "total_cheating_count": 17,
+      "tasks_participated": 36
+    },
+    "71": {
+      "final_reputation": 0.011567951175388658,
+      "non_updated_reputation": 0.013057051542709228,
+      "total_cheating_count": 30,
+      "tasks_participated": 37
+    },
+    "72": {
+      "final_reputation": 0.31375940102345456,
+      "non_updated_reputation": 0.19471986393463997,
+      "total_cheating_count": 37,
+      "tasks_participated": 42
+    },
+    "73": {
+      "final_reputation": 0.021427796775737938,
+      "non_updated_reputation": 0.024197775604577733,
+      "total_cheating_count": 33,
+      "tasks_participated": 38
+    },
+    "74": {
+      "final_reputation": 0.04321275001512139,
+      "non_updated_reputation": 0.057066883339769725,
+      "total_cheating_count": 40,
+      "tasks_participated": 41
+    },
+    "75": {
+      "final_reputation": 0.05291290798301765,
+      "non_updated_reputation": 0.05873468956515047,
+      "total_cheating_count": 35,
+      "tasks_participated": 41
+    },
+    "76": {
+      "final_reputation": 0.006043336946456349,
+      "non_updated_reputation": 0.006837064022687748,
+      "total_cheating_count": 41,
+      "tasks_participated": 48
+    },
+    "77": {
+      "final_reputation": 0.32122352815078203,
+      "non_updated_reputation": 0.2045318545750598,
+      "total_cheating_count": 32,
+      "tasks_participated": 38
+    },
+    "78": {
+      "final_reputation": 0.10567087737281093,
+      "non_updated_reputation": 0.09576150217121333,
+      "total_cheating_count": 29,
+      "tasks_participated": 33
+    },
+    "79": {
+      "final_reputation": 0.006564755762345852,
+      "non_updated_reputation": 0.007421462460536375,
+      "total_cheating_count": 32,
+      "tasks_participated": 37
+    },
+    "80": {
+      "final_reputation": 0.11596696006575445,
+      "non_updated_reputation": 0.1946785658836544,
+      "total_cheating_count": 29,
+      "tasks_participated": 38
+    },
+    "81": {
+      "final_reputation": 0.0005155111266040293,
+      "non_updated_reputation": 0.0005832265340249989,
+      "total_cheating_count": 40,
+      "tasks_participated": 42
+    },
+    "82": {
+      "final_reputation": 0.14667371475031288,
+      "non_updated_reputation": 0.13466194427110853,
+      "total_cheating_count": 37,
+      "tasks_participated": 41
+    },
+    "83": {
+      "final_reputation": 0.0024872581935315914,
+      "non_updated_reputation": 0.0028139162254846705,
+      "total_cheating_count": 33,
+      "tasks_participated": 35
+    },
+    "84": {
+      "final_reputation": 3.1494279839065805e-06,
+      "non_updated_reputation": 3.563119449862174e-06,
+      "total_cheating_count": 52,
+      "tasks_participated": 53
+    },
+    "85": {
+      "final_reputation": 7.326590321414152e-05,
+      "non_updated_reputation": 8.288970768382186e-05,
+      "total_cheating_count": 38,
+      "tasks_participated": 39
+    },
+    "86": {
+      "final_reputation": 0.0024068448022668176,
+      "non_updated_reputation": 0.0027227891941039085,
+      "total_cheating_count": 39,
+      "tasks_participated": 41
+    },
+    "87": {
+      "final_reputation": 0.005576050144935379,
+      "non_updated_reputation": 0.006311069870465097,
+      "total_cheating_count": 36,
+      "tasks_participated": 38
+    },
+    "88": {
+      "final_reputation": 0.0011433055310880746,
+      "non_updated_reputation": 0.0012934834222683728,
+      "total_cheating_count": 39,
+      "tasks_participated": 43
+    },
+    "89": {
+      "final_reputation": 0.0007388908461308621,
+      "non_updated_reputation": 0.000835950902678984,
+      "total_cheating_count": 42,
+      "tasks_participated": 43
+    },
+    "90": {
+      "final_reputation": 3.817399126546849e-05,
+      "non_updated_reputation": 4.318831592710658e-05,
+      "total_cheating_count": 37,
+      "tasks_participated": 37
+    },
+    "91": {
+      "final_reputation": 5.906653414687789e-06,
+      "non_updated_reputation": 6.682518785323832e-06,
+      "total_cheating_count": 45,
+      "tasks_participated": 45
+    },
+    "92": {
+      "final_reputation": 1.1891900559594406e-05,
+      "non_updated_reputation": 1.345395493919116e-05,
+      "total_cheating_count": 42,
+      "tasks_participated": 42
+    },
+    "93": {
+      "final_reputation": 0.00013154787775373727,
+      "non_updated_reputation": 0.00014882727973628668,
+      "total_cheating_count": 36,
+      "tasks_participated": 37
+    },
+    "94": {
+      "final_reputation": 0.00012254169147099452,
+      "non_updated_reputation": 0.0001386380912436145,
+      "total_cheating_count": 32,
+      "tasks_participated": 32
+    },
+    "95": {
+      "final_reputation": 4.820264058874467e-05,
+      "non_updated_reputation": 5.4534273236383555e-05,
+      "total_cheating_count": 36,
+      "tasks_participated": 36
+    },
+    "96": {
+      "final_reputation": 3.0231821148974605e-05,
+      "non_updated_reputation": 3.420290620722155e-05,
+      "total_cheating_count": 38,
+      "tasks_participated": 38
+    },
+    "97": {
+      "final_reputation": 2.3942034345055082e-05,
+      "non_updated_reputation": 2.7086927747014843e-05,
+      "total_cheating_count": 39,
+      "tasks_participated": 39
+    },
+    "98": {
+      "final_reputation": 3.817399126546849e-05,
+      "non_updated_reputation": 4.318831592710658e-05,
+      "total_cheating_count": 37,
+      "tasks_participated": 37
+    },
+    "99": {
+      "final_reputation": 2.3942034345055082e-05,
+      "non_updated_reputation": 2.7086927747014843e-05,
+      "total_cheating_count": 39,
+      "tasks_participated": 39
+    },
+    "100": {
+      "final_reputation": 4.820264058874467e-05,
+      "non_updated_reputation": 5.4534273236383555e-05,
+      "total_cheating_count": 36,
+      "tasks_participated": 36
+    }
+  }
+}

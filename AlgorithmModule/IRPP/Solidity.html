@@ -1,0 +1,308 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SM2RingSignature {
+    // SM2椭圆曲线参数
+    uint256 public constant P = 0xFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF;
+    uint256 public constant A = 0xFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC;
+    uint256 public constant B = 0x28E9FA9E9D9F5E344D5A9E4BCF6509A7F39789F515AB8F92DDBCBD414D940E93;
+    uint256 public constant N = 0xFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123;
+    uint256 public constant GX = 0x32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7;
+    uint256 public constant GY = 0xBC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0;
+
+    // 椭圆曲线点结构
+    struct ECPoint {
+        uint256 x;
+        uint256 y;
+    }
+
+    // 环签名结构
+    struct RingSignature {
+        ECPoint Q_pi;
+        uint256 c1;
+        uint256[] s;
+    }
+
+    // 事件
+    event SignatureGenerated(bytes32 indexed messageHash, address indexed signer);
+    event SignatureVerified(bytes32 indexed messageHash, bool isValid);
+    event LinkableSignatures(bytes32 indexed hash1, bytes32 indexed hash2, bool isLinked);
+
+    // 存储已使用的Q_pi值以检测可链接性
+    mapping(bytes32 => ECPoint) public usedQPi;
+    mapping(bytes32 => bool) public messageProcessed;
+
+    // 模逆运算
+    function modInverse(uint256 a, uint256 m) internal pure returns (uint256) {
+        if (a == 0) return 0;
+        return modPow(a, m - 2, m);
+    }
+
+    // 模幂运算
+    function modPow(uint256 base, uint256 exp, uint256 mod) internal pure returns (uint256) {
+        uint256 result = 1;
+        base = base % mod;
+        while (exp > 0) {
+            if (exp % 2 == 1) {
+                result = mulmod(result, base, mod);
+            }
+            exp = exp / 2;
+            base = mulmod(base, base, mod);
+        }
+        return result;
+    }
+
+    // 椭圆曲线点加法
+    function ecAdd(ECPoint memory p1, ECPoint memory p2) internal pure returns (ECPoint memory) {
+        if (p1.x == 0 && p1.y == 0) return p2;
+        if (p2.x == 0 && p2.y == 0) return p1;
+
+        uint256 lambda;
+        if (p1.x == p2.x) {
+            if (p1.y == p2.y) {
+                // 点倍乘
+                lambda = mulmod(
+                    mulmod(3, mulmod(p1.x, p1.x, P), P) + A,
+                    modInverse(mulmod(2, p1.y, P), P),
+                    P
+                );
+            } else {
+                // 点为无穷远点
+                return ECPoint(0, 0);
+            }
+        } else {
+            lambda = mulmod(
+                (p2.y + P - p1.y) % P,
+                modInverse((p2.x + P - p1.x) % P, P),
+                P
+            );
+        }
+
+        uint256 x3 = (mulmod(lambda, lambda, P) + P - p1.x + P - p2.x) % P;
+        uint256 y3 = (mulmod(lambda, (p1.x + P - x3) % P, P) + P - p1.y) % P;
+
+        return ECPoint(x3, y3);
+    }
+
+    // 椭圆曲线标量乘法
+    function ecMul(ECPoint memory point, uint256 scalar) internal pure returns (ECPoint memory) {
+        if (scalar == 0) return ECPoint(0, 0);
+        if (scalar == 1) return point;
+
+        ECPoint memory result = ECPoint(0, 0);
+        ECPoint memory addend = point;
+
+        while (scalar > 0) {
+            if (scalar & 1 == 1) {
+                result = ecAdd(result, addend);
+            }
+            addend = ecAdd(addend, addend);
+            scalar >>= 1;
+        }
+
+        return result;
+    }
+
+    // 哈希到椭圆曲线点 (H_p)
+    function hashToPoint(bytes memory data) internal pure returns (ECPoint memory) {
+        bytes32 hash = keccak256(data);
+        uint256 x = uint256(hash) % P;
+        
+        // 尝试找到对应的y坐标
+        uint256 y_squared = (mulmod(mulmod(x, x, P), x, P) + mulmod(A, x, P) + B) % P;
+        uint256 y = modPow(y_squared, (P + 1) / 4, P);
+        
+        // 验证点是否在曲线上
+        if (mulmod(y, y, P) == y_squared) {
+            return ECPoint(x, y);
+        }
+        
+        // 如果不在曲线上，使用生成元
+        return ECPoint(GX, GY);
+    }
+
+    // 哈希到Zq* (H_1)
+    function hashToZq(bytes memory data) internal pure returns (uint256) {
+        bytes32 hash = keccak256(data);
+        uint256 result = uint256(hash) % N;
+        return result == 0 ? 1 : result;
+    }
+
+    // 编码椭圆曲线点为bytes
+    function encodePoint(ECPoint memory point) internal pure returns (bytes memory) {
+        return abi.encodePacked(point.x, point.y);
+    }
+
+    // 编码公钥列表为bytes
+    function encodePublicKeys(ECPoint[] memory publicKeys) internal pure returns (bytes memory) {
+        bytes memory encoded;
+        for (uint i = 0; i < publicKeys.length; i++) {
+            encoded = abi.encodePacked(encoded, encodePoint(publicKeys[i]));
+        }
+        return encoded;
+    }
+
+    // 生成环签名
+    function generateRingSignature(
+        bytes32 messageHash,
+        ECPoint[] memory publicKeys,
+        uint256 signerIndex,
+        uint256 privateKey,
+        uint256 randomPhi
+    ) external returns (RingSignature memory) {
+        require(signerIndex < publicKeys.length, "Invalid signer index");
+        require(privateKey > 0 && privateKey < N, "Invalid private key");
+        require(randomPhi > 0 && randomPhi < N, "Invalid random phi");
+
+        uint256 n = publicKeys.length;
+        
+        // 计算R = H_p(L)
+        bytes memory L_encoded = encodePublicKeys(publicKeys);
+        ECPoint memory R = hashToPoint(L_encoded);
+        
+        // 计算Q_π = k_π * R
+        ECPoint memory Q_pi = ecMul(R, privateKey);
+        
+        // 计算φ_π * G 和 φ_π * R
+        ECPoint memory phi_G = ecMul(ECPoint(GX, GY), randomPhi);
+        ECPoint memory phi_R = ecMul(R, randomPhi);
+        
+        // 计算c_{π+1} = H_1(L, Q_π, m, φ_π*G, φ_π*R)
+        bytes memory hashInput = abi.encodePacked(
+            L_encoded,
+            encodePoint(Q_pi),
+            messageHash,
+            encodePoint(phi_G),
+            encodePoint(phi_R)
+        );
+        uint256 c_next = hashToZq(hashInput);
+        
+        // 初始化数组
+        uint256[] memory c = new uint256[](n + 1);
+        uint256[] memory s = new uint256[](n);
+        
+        c[(signerIndex + 1) % n] = c_next;
+        
+        // 为i = π+1, ..., n, 1, ..., π-1生成s_i和c_i
+        for (uint i = 0; i < n - 1; i++) {
+            uint idx = (signerIndex + 1 + i) % n;
+            if (idx == signerIndex) break;
+            
+            // 选择随机s_i
+            s[idx] = (uint256(keccak256(abi.encodePacked(block.timestamp, idx, msg.sender))) % (N - 1)) + 1;
+            
+            // 计算V_i = s_i*G + (s_i + c_i)*K_i
+            ECPoint memory s_i_G = ecMul(ECPoint(GX, GY), s[idx]);
+            uint256 s_i_plus_c_i = addmod(s[idx], c[idx], N);
+            ECPoint memory temp = ecMul(publicKeys[idx], s_i_plus_c_i);
+            ECPoint memory V_i = ecAdd(s_i_G, temp);
+            
+            // 计算W_i = s_i*R + (s_i + c_i)*Q_π
+            ECPoint memory s_i_R = ecMul(R, s[idx]);
+            ECPoint memory temp2 = ecMul(Q_pi, s_i_plus_c_i);
+            ECPoint memory W_i = ecAdd(s_i_R, temp2);
+            
+            // 计算c_{i+1} = H_1(L, Q_π, m, V_i, W_i)
+            bytes memory hashInput2 = abi.encodePacked(
+                L_encoded,
+                encodePoint(Q_pi),
+                messageHash,
+                encodePoint(V_i),
+                encodePoint(W_i)
+            );
+            c[(idx + 1) % n] = hashToZq(hashInput2);
+        }
+        
+        // 计算s_π = (1 + k_π)^{-1} * (φ_π - c_π * k_π) mod q
+        uint256 c_pi = c[signerIndex];
+        uint256 inv_1_plus_k = modInverse(addmod(1, privateKey, N), N);
+        uint256 phi_minus_c_k = (randomPhi + N - mulmod(c_pi, privateKey, N)) % N;
+        s[signerIndex] = mulmod(inv_1_plus_k, phi_minus_c_k, N);
+        
+        // 创建签名
+        RingSignature memory signature = RingSignature({
+            Q_pi: Q_pi,
+            c1: c[0],
+            s: s
+        });
+        
+        // 记录Q_pi用于可链接性检查
+        usedQPi[messageHash] = Q_pi;
+        messageProcessed[messageHash] = true;
+        
+        emit SignatureGenerated(messageHash, msg.sender);
+        
+        return signature;
+    }
+
+    // 验证环签名
+    function verifyRingSignature(
+        bytes32 messageHash,
+        ECPoint[] memory publicKeys,
+        RingSignature memory signature
+    ) external returns (bool) {
+        uint256 n = publicKeys.length;
+        
+        // 验证参数
+        if (signature.s.length != n) return false;
+        if (signature.c1 == 0 || signature.c1 >= N) return false;
+        
+        for (uint i = 0; i < n; i++) {
+            if (signature.s[i] == 0 || signature.s[i] >= N) return false;
+        }
+        
+        // 计算R = H_p(L)
+        bytes memory L_encoded = encodePublicKeys(publicKeys);
+        ECPoint memory R = hashToPoint(L_encoded);
+        
+        uint256[] memory c = new uint256[](n + 1);
+        c[0] = signature.c1;
+        
+        // 验证环
+        for (uint i = 0; i < n; i++) {
+            // 计算V_i' = s_i'*G + (s_i' + c_i')*K_i
+            ECPoint memory s_i_G = ecMul(ECPoint(GX, GY), signature.s[i]);
+            uint256 s_i_plus_c_i = addmod(signature.s[i], c[i], N);
+            ECPoint memory temp = ecMul(publicKeys[i], s_i_plus_c_i);
+            ECPoint memory V_i = ecAdd(s_i_G, temp);
+            
+            // 计算W_i' = s_i'*R + (s_i' + c_i')*Q_π'
+            ECPoint memory s_i_R = ecMul(R, signature.s[i]);
+            ECPoint memory temp2 = ecMul(signature.Q_pi, s_i_plus_c_i);
+            ECPoint memory W_i = ecAdd(s_i_R, temp2);
+            
+            // 更新c_{i+1}'
+            bytes memory hashInput = abi.encodePacked(
+                L_encoded,
+                encodePoint(signature.Q_pi),
+                messageHash,
+                encodePoint(V_i),
+                encodePoint(W_i)
+            );
+            c[i + 1] = hashToZq(hashInput);
+        }
+        
+        bool isValid = (signature.c1 == c[n]);
+        
+        emit SignatureVerified(messageHash, isValid);
+        
+        return isValid;
+    }
+
+    // 检查两个签名是否可链接
+    function checkLinkability(
+        bytes32 messageHash1,
+        bytes32 messageHash2,
+        RingSignature memory sig1,
+        RingSignature memory sig2
+    ) external view returns (bool) {
+        // 检查Q_π是否相同
+        return (sig1.Q_pi.x == sig2.Q_pi.x && sig1.Q_pi.y == sig2.Q_pi.y);
+    }
+
+    // 获取已使用的Q_pi
+    function getUsedQPi(bytes32 messageHash) external view returns (ECPoint memory) {
+        require(messageProcessed[messageHash], "Message not processed");
+        return usedQPi[messageHash];
+    }
+}
